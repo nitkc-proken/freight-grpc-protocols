@@ -1,0 +1,27 @@
+syntax = "proto3";
+service Gateway{
+  rpc initiateNetworkRequest(stream InitNetworkRequest) returns (stream InitNetworkResponse);
+
+  // APIからの要求により強制断
+  rpc forceCloseTunnelSession(InitNetworkRequest) returns (InitNetworkResponse);
+}
+
+message Network{
+  string network_id = 1;
+  string network_name = 2;
+  fixed32 network_address = 3;
+  fixed32 network_mask = 4;
+}
+
+message InitNetworkRequest{
+  Network network = 1;
+}
+
+message InitNetworkResponse{
+  Network network = 1;
+  string tun_interface_name = 2;
+  string bridge_interface_name = 3;
+  string vrf_interface_name = 4;
+}
+
+

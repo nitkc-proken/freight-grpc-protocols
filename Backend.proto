@@ -1,0 +1,33 @@
+syntax = "proto3";
+service Backend{
+  /// 認証を行う
+  rpc validateAuthenticationToken(AuthenticationToken) returns (AuthResponse);
+  /// トンネルセッションを開始する確認
+  rpc startTunnelSession(StartTunnelingSessionRequest) returns (StartTunnelingSessionResponse);
+  /// トンネルセッション
+  rpc closeTunnelSession(CloseTunnelSessionRequest) returns (CloseTunnelSessionResponse);
+}
+
+message AuthenticationToken{
+  string token = 1;
+}
+
+message AuthResponse{
+  string user_id = 2;
+}
+
+message StartTunnelingSessionRequest{
+  string user_id = 1;
+  string network_id = 2;
+}
+
+message StartTunnelingSessionResponse{
+  string session_id = 1;
+  int32 client_ip_address = 2;
+}
+
+message CloseTunnelSessionRequest{
+  string session_id = 1;
+}
+
+message CloseTunnelSessionResponse{}
