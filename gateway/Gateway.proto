@@ -1,6 +1,8 @@
 syntax = "proto3";
+package gateway;
 service Gateway{
-  rpc initiateNetworkRequest(stream InitNetworkRequest) returns (stream InitNetworkResponse);
+  //NICを初期化する
+  rpc initiateNetworkRequest(InitNetworkRequest) returns (InitNetworkResponse);
 
   // APIからの要求により強制断
   rpc forceCloseTunnelSession(InitNetworkRequest) returns (InitNetworkResponse);
@@ -20,7 +22,6 @@ message InitNetworkRequest{
 message InitNetworkResponse{
   Network network = 1;
   string tun_interface_name = 2;
-  string bridge_interface_name = 3;
   string vrf_interface_name = 4;
 }
 
