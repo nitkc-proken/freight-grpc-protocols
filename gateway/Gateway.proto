@@ -2,27 +2,50 @@ syntax = "proto3";
 package gateway;
 service Gateway{
   //NICを初期化する
-  rpc initiateNetworkRequest(InitNetworkRequest) returns (InitNetworkResponse);
+  rpc initiateNetwork(InitNetworkRequest) returns (InitNetworkResponse);
 
   // APIからの要求により強制断
   rpc forceCloseTunnelSession(InitNetworkRequest) returns (InitNetworkResponse);
+
+  rpc initiateContainerNetwork(InitContainerNetworkRequest) returns (InitContainerNetworkResponse);
 }
 
-message Network{
-  string network_id = 1;
-  string network_name = 2;
-  fixed32 network_address = 3;
-  fixed32 network_mask = 4;
-}
+
 
 message InitNetworkRequest{
-  Network network = 1;
+  string network_id = 1;
+  string network_name = 2;
+  uint32 network_address = 3;
+  uint32 network_mask = 4;
+  uint32 containers_network_address = 5;
+  uint32 containers_network_mask = 6;
+  uint32 clients_network_address = 7;
+  uint32 clients_network_mask = 8;
+  string tun_interface_name = 9;
+  string vrf_interface_name = 10;
+  string bridge_interface_name = 11;
+  uint32 vrf_route_table_id = 12;
 }
 
 message InitNetworkResponse{
-  Network network = 1;
+  string network_id = 1;
   string tun_interface_name = 2;
   string vrf_interface_name = 4;
 }
 
 
+message InitContainerNetworkRequest{
+  string network_id = 1;
+  string vrf_interface_name = 2;
+  string container_netns_name = 3;
+  uint32 ip_address = 4;
+  uint32 subnet_mask = 5;
+}
+
+message InitContainerNetworkResponse{
+  string network_id = 1;
+  string vrf_interface_name = 2;
+  string container_netns_name = 3;
+  uint32 ip_address = 4;
+  uint32 subnet_mask = 5;
+}
