@@ -31,6 +31,8 @@ message InitNetworkResponse{
   string network_id = 1;
   string tun_interface_name = 2;
   string vrf_interface_name = 4;
+  string bridge_interface_name = 5;
+  uint32 vrf_route_table_id = 6;
 }
 
 
