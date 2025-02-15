@@ -38,7 +38,7 @@ message InitNetworkResponse{
 
 message InitContainerNetworkRequest{
   string network_id = 1;
-  string vrf_interface_name = 2;
+  string bridge_interface_name = 2;
   string veth_interface_name = 3;
   string veth_container_interface_name = 4;
   string container_pid = 5;
