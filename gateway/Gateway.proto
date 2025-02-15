@@ -39,9 +39,11 @@ message InitNetworkResponse{
 message InitContainerNetworkRequest{
   string network_id = 1;
   string vrf_interface_name = 2;
-  string container_pid = 3;
-  uint32 ip_address = 4;
-  uint32 subnet_mask = 5;
+  string veth_interface_name = 3;
+  string veth_container_interface_name = 4;
+  string container_pid = 5;
+  uint32 ip_address = 6;
+  uint32 subnet_mask = 7;
 }
 
 message InitContainerNetworkResponse{
