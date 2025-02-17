@@ -4,6 +4,7 @@ service Gateway{
   //NICを初期化する
   rpc initiateNetwork(InitNetworkRequest) returns (InitNetworkResponse);
 
+  rpc cleanUpNetwork(CleanNetworkRequest) returns (CleanNetworkResponse);
   // APIからの要求により強制断
   rpc forceCloseTunnelSession(InitNetworkRequest) returns (InitNetworkResponse);
 
@@ -35,6 +36,18 @@ message InitNetworkResponse{
   uint32 vrf_route_table_id = 6;
 }
 
+
+message CleanNetworkRequest{
+  string network_id = 1;
+  string tun_interface_name = 2;
+  string vrf_interface_name = 3;
+  string bridge_interface_name = 4;
+  uint32 vrf_route_table_id = 5;
+}
+
+message CleanNetworkResponse{
+  string network_id = 1;
+}
 
 message InitContainerNetworkRequest{
   string network_id = 1;
