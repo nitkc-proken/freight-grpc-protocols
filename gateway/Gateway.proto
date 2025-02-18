@@ -54,9 +54,11 @@ message InitContainerNetworkRequest{
   string bridge_interface_name = 2;
   string veth_interface_name = 3;
   string veth_container_interface_name = 4;
-  string container_pid = 5;
+  string ns_path = 5;
   uint32 ip_address = 6;
   uint32 subnet_mask = 7;
+  uint32 client_gateway_address = 8;
+  uint32 container_gateway_address = 9;
 }
 
 message InitContainerNetworkResponse{
