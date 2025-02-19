@@ -61,6 +61,7 @@ message InitContainerNetworkRequest{
   uint32 client_network_address = 9;
   uint32 container_gateway_address = 10;
   uint32 container_network_address = 11;
+  uint32 vrf_route_table_id = 12;
 }
 
 message InitContainerNetworkResponse{
