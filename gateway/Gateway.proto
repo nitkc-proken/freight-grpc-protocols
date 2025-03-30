@@ -25,7 +25,6 @@ message InitNetworkRequest{
   string tun_interface_name = 9;
   string vrf_interface_name = 10;
   string bridge_interface_name = 11;
-  uint32 vrf_route_table_id = 12;
 }
 
 message InitNetworkResponse{
